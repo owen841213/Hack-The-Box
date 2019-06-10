@@ -1,7 +1,30 @@
 # Pentesting tools
 ## Recon & Enumeration
+
+### port scanning
+- nmap
+
+    ```bash
+    nmap -sC -sV -oA irked 10.10.10.117
+    ```
+
+    `-sC` enables the default script scanning.
+
+    `-sV` detects the version of services running on the host.
+
+    `-oA` specifies the output format.
+
+    ```bash
+    nmap -vvv -p- 10.10.10.117
+    ```
+
+    `-vvv` is the verbosity level of the output.
+
+    `-p-` scans all 65535 ports.
+
 ### directory scanning
 - gobuster
+
     ```bash
     gobuster -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://10.10.10.104 -t 30
     ```
@@ -143,3 +166,18 @@
     `hashes/giddy.ntlmv2` is the path of the hash file.
 
     ` /opt/wordlists/rockyou.txt` is the path of the wordlist.
+
+## Others
+
+### hiding information
+- steghide
+
+    ```bash
+    steghide extract -sf irked.jpg -p UPupDOWNdownLRlrBAbaSSss
+    ```
+
+    The command above will try to extract the information embeded in the file according to the passphrase.
+
+    `-sf` is the name of the input file to be extract.
+
+    `-p` specifies the passphrase.
